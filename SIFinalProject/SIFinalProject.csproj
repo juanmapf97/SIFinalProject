@@ -67,6 +67,7 @@
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Domain\" />
+    <Folder Include="Domain\TableHandlers\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -81,15 +82,64 @@
     </Compile>
     <Compile Include="Domain\Reservation.cs" />
     <Compile Include="Domain\Vehicle.cs" />
+    <Compile Include="FirstReservationInfoView.cs" />
+    <Compile Include="FirstReservationInfoViewController.cs" />
+    <Compile Include="FirstReservationInfoView.designer.cs">
+      <DependentUpon>FirstReservationInfoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FirstReservationInfoViewController.designer.cs">
+      <DependentUpon>FirstReservationInfoViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReplaceViewSegue.cs" />
+    <Compile Include="TableHandlerView.cs" />
+    <Compile Include="TableHandlerViewController.cs" />
+    <Compile Include="TableHandlerView.designer.cs">
+      <DependentUpon>TableHandlerView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TableHandlerViewController.designer.cs">
+      <DependentUpon>TableHandlerViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\User.cs" />
+    <Compile Include="Domain\Economy.cs" />
+    <Compile Include="Domain\Standard.cs" />
+    <Compile Include="Domain\Compact.cs" />
+    <Compile Include="Domain\Premium.cs" />
+    <Compile Include="Domain\TableHandlers\VehicleTableDataSource.cs" />
+    <Compile Include="Domain\TableHandlers\VehicleTableDelegate.cs" />
+    <Compile Include="CompleteInfoView.cs" />
+    <Compile Include="CompleteInfoViewController.cs" />
+    <Compile Include="CompleteInfoView.designer.cs">
+      <DependentUpon>CompleteInfoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CompleteInfoViewController.designer.cs">
+      <DependentUpon>CompleteInfoViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfoView.cs" />
+    <Compile Include="UserInfoViewController.cs" />
+    <Compile Include="UserInfoView.designer.cs">
+      <DependentUpon>UserInfoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfoViewController.designer.cs">
+      <DependentUpon>UserInfoViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="FirstReservationInfoView.xib" />
+    <InterfaceDefinition Include="TableHandlerView.xib" />
+    <InterfaceDefinition Include="CompleteInfoView.xib" />
+    <InterfaceDefinition Include="UserInfoView.xib" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\WelcomeImage.png" />
     <BundleResource Include="Resources\ButtonImg.png" />
     <BundleResource Include="Resources\UploadButton.png" />
     <BundleResource Include="Resources\BackgroundImg.png" />
+    <BundleResource Include="Resources\PeliminaryBgr.png" />
+    <BundleResource Include="Resources\Kia.png" />
+    <BundleResource Include="Resources\Nissan.png" />
+    <BundleResource Include="Resources\BMW.png" />
+    <BundleResource Include="Resources\Toyota.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
 </Project>

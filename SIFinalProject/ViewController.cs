@@ -5,6 +5,7 @@ using Foundation;
 using SIFinalProject.Domain;
 using System.Linq;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace SIFinalProject
 {
@@ -14,7 +15,13 @@ namespace SIFinalProject
 
 		public string FilePath { get; set; } = "";
 
-  		#endregion
+		#endregion
+
+		#region Private Properties
+
+		private Reservation UploadedReservation { get; set; }
+
+		#endregion
 
 		public ViewController(IntPtr handle) : base(handle)
 		{
@@ -102,7 +109,25 @@ namespace SIFinalProject
 			return good;
 		}
 
-  		#endregion
+		#endregion
+
+		#region Override Methods
+
+		public override void PrepareForSegue(NSStoryboardSegue segue, NSObject sender)
+		{
+			base.PrepareForSegue(segue, sender);
+
+			switch (segue.Identifier)
+			{
+				case ("OpenInfoDetails"):
+					var controller = segue.DestinationController as FirstReservationInfoViewController;
+					controller.ControllerReservation = UploadedReservation;
+					break;
+			}
+
+		}
+
+		#endregion
 
 		#region Actions
 
@@ -111,7 +136,7 @@ namespace SIFinalProject
 			var dlg = NSOpenPanel.OpenPanel;
 			dlg.CanChooseFiles = true;
 			dlg.CanChooseDirectories = false;
-			dlg.AllowedFileTypes = new string[] { "txt", "html", "md", "css" };
+			dlg.AllowedFileTypes = new string[] { "txt" };
 
 			if (dlg.RunModal() == 1)
 			{
@@ -125,31 +150,52 @@ namespace SIFinalProject
 					var reservationText = File.ReadLines(path)
 											  .Select(s => s.Split('-'))
 											  .ToArray();
-					
+
 					// Your dictionary
 					var reservationProperties = new Dictionary<string, string>();
 
 					// Loop through the array and add the key/value pairs to the dictionary
 					for (int i = 0; i < reservationText.Length; i++)
 					{
-						// For example lines[i][0] = ABW, lines[i][1] = Abbey Wood
 						reservationProperties[reservationText[i][0]] = reservationText[i][1];
 					}
 
 					string pickupDate, returnDate, pickupLocation, returnLocation, vehicleType;
 					reservationProperties.TryGetValue("PickupDate", out pickupDate);
-					reservationProperties.TryGetValue("Lugar de pickup", out returnDate);
-					reservationProperties.TryGetValue("Devolución", out pickupLocation);
+					reservationProperties.TryGetValue("Lugar de pickup", out pickupLocation);
+					reservationProperties.TryGetValue("Devolución", out returnDate);
 					reservationProperties.TryGetValue("Lugar de devolución", out returnLocation);
 					reservationProperties.TryGetValue("Tipo de Vehículo", out vehicleType);
 
-					var reservation = new Reservation(DateTime.ParseExact(pickupDate, "yyyy/MM/dd HH:mm", System.Globalization.CultureInfo.InvariantCulture), pickupLocation, DateTime.ParseExact(returnDate, "yyyy/MM/dd HH:mm", System.Globalization.CultureInfo.InvariantCulture), returnLocation, null, Convert.ToInt32(vehicleType));
+					int type;
+					switch (vehicleType)
+					{
+						case ("Standard"):
+							type = 0;
+							break;
+						case("Economy"):
+							type = 1;
+							break;
+						case("Compact"):
+							type = 2;
+							break;
+						case("Premium"):
+							type = 3;
+							break;
+						default:
+							type = 0;
+							break;
+					}
 
+					var reservation = new Reservation(DateTime.Parse(pickupDate), pickupLocation, DateTime.Parse(returnDate), returnLocation, null, null, type);
 
+					UploadedReservation = reservation;
+
+					PerformSegue("OpenInfoDetails", this);
 				}
 			}
 		}
 
-  		#endregion
+		#endregion
 	}
 }
