@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="Domain\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -78,9 +79,17 @@
     <Compile Include="ViewController.designer.cs">
       <DependentUpon>ViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Domain\Reservation.cs" />
+    <Compile Include="Domain\Vehicle.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\WelcomeImage.png" />
+    <BundleResource Include="Resources\ButtonImg.png" />
+    <BundleResource Include="Resources\UploadButton.png" />
+    <BundleResource Include="Resources\BackgroundImg.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
 </Project>
