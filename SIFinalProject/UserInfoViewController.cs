@@ -73,27 +73,6 @@ namespace SIFinalProject
 
 		#endregion
 
-		#region Public Methods
-
-		//public void SaveDocument()
-		//{
-		//	var dlg = new NSSavePanel();
-		//	dlg.Title = "Save Text File";
-		//	dlg.AllowedFileTypes = new string[] { "txt", "html", "md", "css" };
-		//	if (dlg.RunModal() == 1)
-		//	{
-		//		var alert = new NSAlert()
-		//		{
-		//			AlertStyle = NSAlertStyle.Critical,
-		//			InformativeText = "We need to save the document here...",
-		//			MessageText = "Save Document",
-		//		};
-		//		alert.RunModal();
-		//	}
-		//}
-
-		#endregion
-
 		#region Private Methods
 
 		private string CreateStringMessage(Reservation res)
