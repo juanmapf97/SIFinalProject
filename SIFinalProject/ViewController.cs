@@ -58,59 +58,6 @@ namespace SIFinalProject
 
 		#endregion
 
-		#region Private Methods
-
-		private bool OpenFile(NSUrl url)
-		{
-			var good = false;
-
-			// Trap all errors
-			try
-			{
-				var path = url.Path;
-
-				// Is the file already open?
-				foreach (NSWindow window in NSApplication.SharedApplication.Windows)
-				{
-					var content = window.ContentViewController as ViewController;
-					if (content != null && path == content.FilePath)
-					{
-						// Bring window to front
-						window.MakeKeyAndOrderFront(this);
-						return true;
-					}
-				}
-
-				// Get new window
-				var storyboard = NSStoryboard.FromName("Main", null);
-				var controller = storyboard.InstantiateControllerWithIdentifier("MainWindow") as NSWindowController;
-
-				// Display
-				controller.ShowWindow(this);
-
-				// Load the text into the window
-				//var viewController = controller.Window.ContentViewController as ViewController;
-				View.Window.RepresentedUrl = url;
-				SetFilePath(path);
-
-				// Add document to the Open Recent menu
-				NSDocumentController.SharedDocumentController.NoteNewRecentDocumentURL(url);
-
-				// Make as successful
-				good = true;
-			}
-			catch
-			{
-				// Mark as bad file on error
-				good = false;
-			}
-
-			// Return results
-			return good;
-		}
-
-		#endregion
-
 		#region Override Methods
 
 		public override void PrepareForSegue(NSStoryboardSegue segue, NSObject sender)
@@ -161,11 +108,11 @@ namespace SIFinalProject
 					}
 
 					string pickupDate, returnDate, pickupLocation, returnLocation, vehicleType;
-					reservationProperties.TryGetValue("PickupDate", out pickupDate);
-					reservationProperties.TryGetValue("Lugar de pickup", out pickupLocation);
-					reservationProperties.TryGetValue("Devolución", out returnDate);
-					reservationProperties.TryGetValue("Lugar de devolución", out returnLocation);
-					reservationProperties.TryGetValue("Tipo de Vehículo", out vehicleType);
+					reservationProperties.TryGetValue("Fecha de recogida", out pickupDate);
+					reservationProperties.TryGetValue("Lugar de recogida", out pickupLocation);
+					reservationProperties.TryGetValue("Fecha de entrega", out returnDate);
+					reservationProperties.TryGetValue("Lugar de entrega", out returnLocation);
+					reservationProperties.TryGetValue("Tipo de vehículo", out vehicleType);
 
 					int type;
 					switch (vehicleType)
@@ -187,7 +134,13 @@ namespace SIFinalProject
 							break;
 					}
 
-					var reservation = new Reservation(DateTime.Parse(pickupDate), pickupLocation, DateTime.Parse(returnDate), returnLocation, null, null, type);
+					pickupLocation = pickupLocation ?? "";
+					returnLocation = returnLocation ?? "";
+					pickupDate = pickupDate ?? "";
+					returnDate = returnDate ?? "";
+					var pDate = (pickupDate != "") ? DateTime.Parse(pickupDate) : DateTime.Today;
+					var rDate = (returnDate != "") ? DateTime.Parse(returnDate) : DateTime.Today;
+					var reservation = new Reservation(pDate, pickupLocation, rDate, returnLocation, null, null, type);
 
 					UploadedReservation = reservation;
 

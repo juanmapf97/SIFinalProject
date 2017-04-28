@@ -52,7 +52,7 @@ namespace SIFinalProject
 			switch (segue.Identifier)
 			{
 				case "OpenUserInfoSegue":
-					var controller = segue.DestinationController as FirstReservationInfoViewController;
+					var controller = segue.DestinationController as UserInfoViewController;
 					controller.ControllerReservation = ControllerReservation;
 					break;
 				case "CancelFullInfoSegue":
@@ -71,7 +71,7 @@ namespace SIFinalProject
 			SelectImage(VehicleImage, ControllerReservation.VehicleType);
 			ModelLabel.StringValue = ControllerReservation.Vehicle.Model;
 			PriceLabel.StringValue = ControllerReservation.Vehicle.RentalPrice.ToString("C");
-			TypeLabel.StringValue = ControllerReservation.VehicleType.ToString();
+			TypeLabel.StringValue = ControllerReservation.StringedVehicleType;
 			PickupDatePicker.DateValue = ControllerReservation.GetNSDate(ControllerReservation.PickupDate);
 			SelectLocationNSTag(PickupLocation, ControllerReservation.PickupLocation);
 			SelectLocationNSTag(ReturnLocation, ControllerReservation.ReturnLocation);

@@ -5,6 +5,7 @@ using Foundation;
 using AppKit;
 using SIFinalProject.Domain;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace SIFinalProject
 {
@@ -54,6 +55,20 @@ namespace SIFinalProject
 		public override void PrepareForSegue(NSStoryboardSegue segue, NSObject sender)
 		{
 			base.PrepareForSegue(segue, sender);
+
+			switch (segue.Identifier)
+			{
+				case "EndProcessSegue":
+					ControllerReservation = null;
+					break;
+				case "CancelUserInfoSegue":
+					var controller = segue.DestinationController as CompleteInfoViewController;
+					ControllerReservation.UserInfo = null;
+					controller.ControllerReservation = ControllerReservation;
+					break;
+				default:
+					break;
+			}
 		}
 
 		#endregion
@@ -83,12 +98,12 @@ namespace SIFinalProject
 
 		private string CreateStringMessage(Reservation res)
 		{
-			var messsage = "Reservación: \n\tFecha de recogida:" + res.PickupDate.ToShortDateString() 
+			var messsage = "Reservación: \n\tFecha de recogida: " + res.PickupDate.ToShortDateString() 
 			               + "\n\tLugar de recogida: " + res.PickupLocation
 			               + "\n\tFecha de entrega: " + res.ReturnDate.ToShortDateString()
 			               + "\n\tLugar de entrega: " + res.ReturnLocation
 				           + "\n\n\tVehiculo Seleccionado:\n\t\tModelo: " + res.Vehicle.Model 
-			               + "\n\t\tPrecio Total: " + res.Vehicle.CalculatePrice(Convert.ToInt32((res.ReturnDate - res.PickupDate).TotalDays))
+			               + "\n\t\tPrecio Total: " + res.Vehicle.CalculatePrice(Convert.ToInt32((res.ReturnDate - res.PickupDate).TotalDays)).ToString("C")
 			               + "\n\t\tTipo de vehiculo: " + res.VehicleType
 			               + "\n\n\tUsuario:\n\t\tNombre: " + res.UserInfo.FirstName
 			               + "\n\t\tApellido: " + res.UserInfo.LastName
@@ -103,18 +118,7 @@ namespace SIFinalProject
 			return messsage;
 		}
 
-		#endregion
-
-		#region 
-
-		#region Actions
-
-		partial void CancelButton(NSObject sender)
-		{
-
-		}
-
-		partial void Confirm(NSObject sender)
+		private int SaveDialog()
 		{
 			var dlg = new NSSavePanel();
 			dlg.Title = "Save Text File";
@@ -123,13 +127,58 @@ namespace SIFinalProject
 			{
 				var path = dlg.Url.Path;
 				File.WriteAllText(path, CreateStringMessage(ControllerReservation));
-				//var alert = new NSAlert()
-				//{
-				//	AlertStyle = NSAlertStyle.Critical,
-				//	InformativeText = "We need to save the document here...",
-				//	MessageText = "Save Document",
-				//};
-				//alert.RunModal();
+				return 1;
+			}
+			else
+				return 0;
+		}
+
+		private bool ValidateInfo()
+		{
+			var numbers = new Regex("^[0-9]+$");
+			var letters = new Regex("^([A-Za-zÑñáéíóúÁÉÍÓÚ ]+)$");
+			if (numbers.IsMatch(CellphoneTF.StringValue) && numbers.IsMatch(TelephoneTF.StringValue) && letters.IsMatch(NameTF.StringValue) && letters.IsMatch(LastNameTF.StringValue))
+				return true;
+			return false;
+		}
+
+		#endregion
+
+		#region Actions
+
+		partial void CancelButton(NSObject sender)
+		{
+			PerformSegue("CancelUserInfoSegue", this);
+		}
+
+		partial void Confirm(NSObject sender)
+		{
+			if (ValidateInfo())
+			{
+				ControllerReservation.UserInfo = new User();
+				ControllerReservation.UserInfo.FirstName = NameTF.StringValue;
+				ControllerReservation.UserInfo.LastName = LastNameTF.StringValue;
+				ControllerReservation.UserInfo.Email = EmailTF.StringValue;
+				ControllerReservation.UserInfo.Country = CountryTF.StringValue;
+				ControllerReservation.UserInfo.City = CityTF.StringValue;
+				ControllerReservation.UserInfo.Cellphone = CellphoneTF.StringValue;
+				ControllerReservation.UserInfo.Hotel = HotelTF.StringValue;
+				ControllerReservation.UserInfo.State = StateTF.StringValue;
+				ControllerReservation.UserInfo.Telephone = TelephoneTF.StringValue;
+				if (SaveDialog() == 1)
+				{
+					PerformSegue("EndProcessSegue", this);
+				}
+			}
+			else
+			{
+				var alert = new NSAlert()
+				{
+					AlertStyle = NSAlertStyle.Informational,
+					InformativeText = "La información proporcionada contiene errores.",
+					MessageText = "Error",
+				};
+				alert.RunModal();
 			}
 		}
 

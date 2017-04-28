@@ -26,6 +26,27 @@ namespace SIFinalProject
 
 		#endregion
 
+		#region Private Methods
+
+		private string StringedType(int type)
+		{
+			switch (type)
+			{
+				case 0:
+					return "Standard";
+				case 1:
+					return "Economy";
+				case 2:
+					return "Compact";
+				case 3:
+					return "Premium";
+				default:
+					return "Standard";
+			}
+		}
+
+		#endregion
+
 		#region Override methods
 
 		public override NSView GetViewForItem(NSTableView tableView, NSTableColumn tableColumn, nint row)
@@ -48,10 +69,10 @@ namespace SIFinalProject
 					view.StringValue = DataSource.Vehicles[(int)row].Model;
 					break;
 				case "Tipo":
-					view.StringValue = DataSource.Vehicles[(int)row].Type.ToString();
+					view.StringValue = StringedType(DataSource.Vehicles[(int)row].Type);
 					break;
 				case "Precio":
-					view.StringValue = DataSource.Vehicles[(int)row].RentalPrice.ToString();
+					view.StringValue = DataSource.Vehicles[(int)row].RentalPrice.ToString("C");
 					break;
 				default:
 					break;

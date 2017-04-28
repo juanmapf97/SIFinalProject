@@ -7,7 +7,7 @@ namespace SIFinalProject
 	{
 		#region Constructors
 
-		public Premium(string model) : base(model, 3, 1960)
+		public Premium(string model) : base(model, 3, 2400)
 		{
 
 		}

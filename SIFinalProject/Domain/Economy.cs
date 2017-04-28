@@ -6,7 +6,7 @@ namespace SIFinalProject
 	{
 		#region Constructors
 
-		public Economy(string model) : base(model, 1, 250)
+		public Economy(string model) : base(model, 1, 480)
 		{
 
 		}

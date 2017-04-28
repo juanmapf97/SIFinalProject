@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12118"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
         <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -1309,7 +1309,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="BackgroundImg" id="TjA-1s-EsU"/>
                                 <connections>
-                                    <segue destination="XfG-lQ-9wD" kind="custom" identifier="EndProcessSegue" customClass="ReplaceViewSeque" id="V4p-Hd-9Vw"/>
+                                    <segue destination="XfG-lQ-9wD" kind="custom" identifier="EndProcessSegue" customClass="ReplaceViewSeque" id="0dx-BF-CbU"/>
                                 </connections>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EOX-Ld-jsl">
@@ -1375,7 +1375,7 @@
                                             </buttonCell>
                                             <connections>
                                                 <action selector="CancelButton:" target="6Zr-4h-byR" id="pbb-oD-ry5"/>
-                                                <segue destination="afw-Ci-d9j" kind="custom" identifier="CancelUserInfoSegue" customClass="ReplaceViewSeque" id="cuk-1E-HJG"/>
+                                                <segue destination="afw-Ci-d9j" kind="custom" identifier="CancelUserInfoSegue" customClass="ReplaceViewSeque" id="kBw-AF-xhk"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -1577,8 +1577,8 @@
         <image name="WelcomeImage" width="960.47998046875" height="540.47998046875"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cuk-1E-HJG"/>
-        <segue reference="V4p-Hd-9Vw"/>
+        <segue reference="kBw-AF-xhk"/>
+        <segue reference="0dx-BF-CbU"/>
         <segue reference="LeR-Hq-Oec"/>
         <segue reference="o5B-rr-mbd"/>
     </inferredMetricsTieBreakers>

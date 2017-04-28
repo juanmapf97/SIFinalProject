@@ -49,16 +49,6 @@ namespace SIFinalProject
 				ModelLabel = null;
 			}
 
-			if (PriceLabel != null) {
-				PriceLabel.Dispose ();
-				PriceLabel = null;
-			}
-
-			if (TypeLabel != null) {
-				TypeLabel.Dispose ();
-				TypeLabel = null;
-			}
-
 			if (PickupDatePicker != null) {
 				PickupDatePicker.Dispose ();
 				PickupDatePicker = null;
@@ -69,6 +59,11 @@ namespace SIFinalProject
 				PickupLocation = null;
 			}
 
+			if (PriceLabel != null) {
+				PriceLabel.Dispose ();
+				PriceLabel = null;
+			}
+
 			if (ReturnDatePicker != null) {
 				ReturnDatePicker.Dispose ();
 				ReturnDatePicker = null;
@@ -77,6 +72,11 @@ namespace SIFinalProject
 			if (ReturnLocation != null) {
 				ReturnLocation.Dispose ();
 				ReturnLocation = null;
+			}
+
+			if (TypeLabel != null) {
+				TypeLabel.Dispose ();
+				TypeLabel = null;
 			}
 
 			if (VehicleImage != null) {
