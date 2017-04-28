@@ -163,13 +163,6 @@ namespace SIFinalProject
 
 		#endregion
 
-		//strongly typed view accessor
-		public new UserInfoView View
-		{
-			get
-			{
-				return (UserInfoView)base.View;
-			}
-		}
+
 	}
 }

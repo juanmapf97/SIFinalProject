@@ -149,13 +149,6 @@ namespace SIFinalProject
 
 		#endregion
 
-		//strongly typed view accessor
-		public new FirstReservationInfoView View
-		{
-			get
-			{
-				return (FirstReservationInfoView)base.View;
-			}
-		}
+
 	}
 }

@@ -129,13 +129,6 @@ namespace SIFinalProject
 
 		#endregion
 
-		//strongly typed view accessor
-		public new TableHandlerView View
-		{
-			get
-			{
-				return (TableHandlerView)base.View;
-			}
-		}
+
 	}
 }

@@ -176,13 +176,6 @@ namespace SIFinalProject
 
 		#endregion
 
-		//strongly typed view accessor
-		public new CompleteInfoView View
-		{
-			get
-			{
-				return (CompleteInfoView)base.View;
-			}
-		}
+
 	}
 }
