@@ -39,6 +39,24 @@ namespace SIFinalProject.Domain
 			get { return _vehicleType; }
 			set { _vehicleType = value; }
 		}
+		public string StringedVehicleType {
+			get {
+				switch (_vehicleType)
+				{
+					case 0:
+						return "Standard";
+					case 1:
+						return "Economy";
+					case 2:
+						return "Compact";
+					case 3:
+						return "Premium";
+					default:
+						return "Standard";
+				}
+			
+			}
+		}
 		public Vehicle Vehicle {
 			get { return _vehicle; }
 			set { _vehicle = value; }

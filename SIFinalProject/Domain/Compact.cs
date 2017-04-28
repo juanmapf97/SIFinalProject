@@ -6,7 +6,7 @@ namespace SIFinalProject
 	{
 		#region Constructors
 
-		public Compact(string model) : base(model, 2, 550)
+		public Compact(string model) : base(model, 2, 510)
 		{
 
 		}

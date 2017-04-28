@@ -89,18 +89,18 @@ namespace SIFinalProject
 
 		public void InitializeList()
 		{
-			Vehicles.Add(new Compact("Kia"));
-			Vehicles.Add(new Compact("Kia"));
-			Vehicles.Add(new Compact("Kia"));
-			Vehicles.Add(new Premium("BMW"));
-			Vehicles.Add(new Premium("BMW"));
-			Vehicles.Add(new Premium("BMW"));
-			Vehicles.Add(new Economy("Nissan"));
-			Vehicles.Add(new Economy("Nissan"));
-			Vehicles.Add(new Economy("Nissan"));
-			Vehicles.Add(new Standard("Toyota"));
-			Vehicles.Add(new Standard("Toyota"));
-			Vehicles.Add(new Standard("Toyota"));
+			Vehicles.Add(new Compact("Kia Rio"));
+			Vehicles.Add(new Compact("Ford Fiesta"));
+			Vehicles.Add(new Compact("Renault Twingo"));
+			Vehicles.Add(new Premium("BMW M3"));
+			Vehicles.Add(new Premium("Mercedes E class"));
+			Vehicles.Add(new Premium("Porsche Cayenne"));
+			Vehicles.Add(new Economy("Nissan Juke"));
+			Vehicles.Add(new Economy("Ford Focus"));
+			Vehicles.Add(new Economy("Smart"));
+			Vehicles.Add(new Standard("Toyota Corolla"));
+			Vehicles.Add(new Standard("Volkswagen Jetta"));
+			Vehicles.Add(new Standard("Nissan Versa"));
 		}
 
 		#endregion

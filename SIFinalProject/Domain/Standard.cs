@@ -7,7 +7,7 @@ namespace SIFinalProject
 
 		#region Constructors
 
-		public Standard(string model) : base(model, 0, 480)
+		public Standard(string model) : base(model, 0, 630)
 		{
 			
 		}

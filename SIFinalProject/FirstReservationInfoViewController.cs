@@ -67,7 +67,6 @@ namespace SIFinalProject
 			switch (segue.Identifier)
 			{
 				case "OpenTableSegue":
-					// Inform window of its type
 					var controller = segue.DestinationController as TableHandlerViewController;
 					controller.ControllerReservation = ControllerReservation;
 					break;
